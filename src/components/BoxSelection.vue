@@ -4,7 +4,7 @@
       <button @click="handleToggleBoxSelection" :class="buttonClass">
         {{ buttonText }}
       </button>
-      <button @click="handleClearSelection" class="control-button clear-button" :disabled="!store.selectedExtent && !store.isBoxSelectionActive">
+      <button @click="handleClearSelection" class="control-button clear-button" :disabled="!store.selectedExtent">
         Clear Selection
       </button>
     </div>

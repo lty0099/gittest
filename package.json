@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "test": "vitest"
   },
   "dependencies": {
     "ol": "^10.5.0",
@@ -18,15 +19,19 @@
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
+    "@pinia/testing": "^1.0.1",
     "@tsconfig/node22": "^22.0.1",
     "@types/node": "^22.14.0",
     "@vitejs/plugin-vue": "^5.2.3",
+    "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.7.0",
+    "jsdom": "^26.1.0",
     "npm-run-all2": "^7.0.2",
     "prettier": "3.5.3",
     "typescript": "~5.8.0",
     "vite": "^6.2.4",
     "vite-plugin-vue-devtools": "^7.7.2",
+    "vitest": "^3.1.4",
     "vue-tsc": "^2.2.8"
   }
 }
