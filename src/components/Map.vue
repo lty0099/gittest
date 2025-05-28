@@ -1,6 +1,5 @@
 <template>
   <div ref="mapContainer" class="map-container"></div>
-  <BoxSelection class="box-selection" />
 </template>
 
 <script>
@@ -17,11 +16,9 @@ import Polygon from 'ol/geom/Polygon'
 import { Style, Stroke } from 'ol/style'
 // import {platformModifierKeyOnly} from 'ol/events/condition'; // Example condition
 import { useBoxSelectionStore } from '@/stores/boxSelectionStore'
-import BoxSelection from './BoxSelection.vue'
 
 export default {
   name: 'MapComponent',
-  components: { BoxSelection },
   data() {
     return {
       map: null, // To store the OpenLayers map instance
@@ -121,7 +118,21 @@ export default {
         console.log('Map.vue: Box selected extent:', extent)
 
         this.clearBoxSelectionGraphic() // Clear previous graphic
-        const polygon = Polygon.fromExtent(extent)
+
+        // Corrected polygon creation:
+        const minX = extent[0];
+        const minY = extent[1];
+        const maxX = extent[2];
+        const maxY = extent[3];
+        const ring = [ // Define the outer ring of the polygon
+          [minX, minY],
+          [minX, maxY],
+          [maxX, maxY],
+          [maxX, minY],
+          [minX, minY] // Close the ring
+        ];
+        const polygon = new Polygon([ring]); // Polygon constructor takes an array of rings
+
         const feature = new Feature(polygon)
         this.boxSelectionSource.addFeature(feature)
 
@@ -176,10 +187,5 @@ export default {
   width: 100%;
   height: 100%; /* You can adjust this as needed */
   border: 1px solid #ccc;
-}
-.box-selection {
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 </style>
