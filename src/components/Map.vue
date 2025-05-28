@@ -1,5 +1,6 @@
 <template>
   <div ref="mapContainer" class="map-container"></div>
+  <BoxSelection class="box-selection" />
 </template>
 
 <script>
@@ -16,9 +17,11 @@ import Polygon from 'ol/geom/Polygon'
 import { Style, Stroke } from 'ol/style'
 // import {platformModifierKeyOnly} from 'ol/events/condition'; // Example condition
 import { useBoxSelectionStore } from '@/stores/boxSelectionStore'
+import BoxSelection from './BoxSelection.vue'
 
 export default {
   name: 'MapComponent',
+  components: { BoxSelection },
   data() {
     return {
       map: null, // To store the OpenLayers map instance
@@ -173,5 +176,10 @@ export default {
   width: 100%;
   height: 100%; /* You can adjust this as needed */
   border: 1px solid #ccc;
+}
+.box-selection {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 </style>
